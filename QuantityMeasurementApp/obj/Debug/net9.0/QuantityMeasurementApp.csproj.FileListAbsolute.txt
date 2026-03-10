@@ -1,17 +1,8 @@
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.exe
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.deps.json
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.runtimeconfig.json
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.dll
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.pdb
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasurementApp.GeneratedMSBuildEditorConfig.editorconfig
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasurementApp.AssemblyInfoInputs.cache
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasurementApp.AssemblyInfo.cs
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasurementApp.csproj.CoreCompileInputs.cache
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasurementApp.dll
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\obj\Debug\net9.0\refint\QuantityMeasurementApp.dll
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasurementApp.pdb
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasurementApp.genruntimeconfig.cache
-D:\New folder\QuantityMeasurementApp-feature-UC7-Addition-With-Target-Unit-Specification\QuantityMeasurementApp\obj\Debug\net9.0\ref\QuantityMeasurementApp.dll
+D:\QuantityMeasurementApp\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.exe
+D:\QuantityMeasurementApp\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.deps.json
+D:\QuantityMeasurementApp\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.runtimeconfig.json
+D:\QuantityMeasurementApp\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.dll
+D:\QuantityMeasurementApp\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.pdb
 D:\QuantityMeasurementApp\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasurementApp.GeneratedMSBuildEditorConfig.editorconfig
 D:\QuantityMeasurementApp\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasurementApp.AssemblyInfoInputs.cache
 D:\QuantityMeasurementApp\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasurementApp.AssemblyInfo.cs
@@ -20,10 +11,5 @@ D:\QuantityMeasurementApp\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasur
 D:\QuantityMeasurementApp\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasurementApp.dll
 D:\QuantityMeasurementApp\QuantityMeasurementApp\obj\Debug\net9.0\refint\QuantityMeasurementApp.dll
 D:\QuantityMeasurementApp\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasurementApp.pdb
-D:\QuantityMeasurementApp\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.exe
-D:\QuantityMeasurementApp\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.deps.json
-D:\QuantityMeasurementApp\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.runtimeconfig.json
-D:\QuantityMeasurementApp\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.dll
-D:\QuantityMeasurementApp\QuantityMeasurementApp\bin\Debug\net9.0\QuantityMeasurementApp.pdb
 D:\QuantityMeasurementApp\QuantityMeasurementApp\obj\Debug\net9.0\QuantityMeasurementApp.genruntimeconfig.cache
 D:\QuantityMeasurementApp\QuantityMeasurementApp\obj\Debug\net9.0\ref\QuantityMeasurementApp.dll
