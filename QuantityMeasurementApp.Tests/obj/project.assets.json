@@ -3788,38 +3788,40 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\priya\\.nuget\\packages\\": {}
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\QuantityMeasurementApp\\QuantityMeasurementApp.Tests\\QuantityMeasurementApp.Tests.csproj",
+      "projectUniqueName": "D:\\QuantityMeasurementApp\\QuantityMeasurementApp.Tests\\QuantityMeasurementApp.Tests.csproj",
       "projectName": "QuantityMeasurementApp.Tests",
-      "projectPath": "E:\\QuantityMeasurementApp\\QuantityMeasurementApp.Tests\\QuantityMeasurementApp.Tests.csproj",
-      "packagesPath": "C:\\Users\\priya\\.nuget\\packages\\",
-      "outputPath": "E:\\QuantityMeasurementApp\\QuantityMeasurementApp.Tests\\obj\\",
+      "projectPath": "D:\\QuantityMeasurementApp\\QuantityMeasurementApp.Tests\\QuantityMeasurementApp.Tests.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "D:\\QuantityMeasurementApp\\QuantityMeasurementApp.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\priya\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "E:\\QuantityMeasurementApp\\QuantityMeasurementBusinessLayer\\QuantityMeasurementBusinessLayer.csproj": {
-              "projectPath": "E:\\QuantityMeasurementApp\\QuantityMeasurementBusinessLayer\\QuantityMeasurementBusinessLayer.csproj"
+            "D:\\QuantityMeasurementApp\\QuantityMeasurementBusinessLayer\\QuantityMeasurementBusinessLayer.csproj": {
+              "projectPath": "D:\\QuantityMeasurementApp\\QuantityMeasurementBusinessLayer\\QuantityMeasurementBusinessLayer.csproj"
             },
-            "E:\\QuantityMeasurementApp\\QuantityMeasurementModelLayer\\QuantityMeasurementModelLayer.csproj": {
-              "projectPath": "E:\\QuantityMeasurementApp\\QuantityMeasurementModelLayer\\QuantityMeasurementModelLayer.csproj"
+            "D:\\QuantityMeasurementApp\\QuantityMeasurementModelLayer\\QuantityMeasurementModelLayer.csproj": {
+              "projectPath": "D:\\QuantityMeasurementApp\\QuantityMeasurementModelLayer\\QuantityMeasurementModelLayer.csproj"
             },
-            "E:\\QuantityMeasurementApp\\QuantityMeasurementRepositoryLayer\\QuantityMeasurementRepositoryLayer.csproj": {
-              "projectPath": "E:\\QuantityMeasurementApp\\QuantityMeasurementRepositoryLayer\\QuantityMeasurementRepositoryLayer.csproj"
+            "D:\\QuantityMeasurementApp\\QuantityMeasurementRepositoryLayer\\QuantityMeasurementRepositoryLayer.csproj": {
+              "projectPath": "D:\\QuantityMeasurementApp\\QuantityMeasurementRepositoryLayer\\QuantityMeasurementRepositoryLayer.csproj"
             }
           }
         }
@@ -3834,7 +3836,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -3868,26 +3870,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[9.0.12, 9.0.12]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[9.0.12, 9.0.12]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[9.0.12, 9.0.12]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
