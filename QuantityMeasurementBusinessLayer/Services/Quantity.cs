@@ -1,4 +1,6 @@
 using QuantityMeasurementModelLayer.Enums;
+using QuantityMeasurementModelLayer.Extensions;
+
 namespace QuantityMeasurementApp.Model;
 
 public class Quantity<U> where U : struct
@@ -70,6 +72,38 @@ public class Quantity<U> where U : struct
             throw new ArgumentException("Unsupported unit type");
 
         return new Quantity<U>(converted, targetUnit);
+    }
+
+    // Static conversion method for tests
+    public static double Convert(double value, U fromUnit, U toUnit)
+    {
+        if (double.IsNaN(value) || double.IsInfinity(value))
+            throw new ArgumentException("Invalid value");
+
+        // Convert to base unit first
+        double baseValue;
+        if (fromUnit is LengthUnit l1)
+            baseValue = l1.ConvertToBaseUnit(value);
+        else if (fromUnit is WeightUnit w1)
+            baseValue = w1.ConvertToBaseUnit(value);
+        else if (fromUnit is VolumeUnit v1)
+            baseValue = v1.ToBaseUnit();
+        else if (fromUnit is TemperatureUnit t1)
+            baseValue = t1.ConvertToBaseUnit(value);
+        else
+            throw new ArgumentException("Unsupported unit type");
+
+        // Convert from base unit to target unit
+        if (toUnit is LengthUnit l2)
+            return l2.ConvertFromBaseUnit(baseValue);
+        else if (toUnit is WeightUnit w2)
+            return w2.ConvertFromBaseUnit(baseValue);
+        else if (toUnit is VolumeUnit v2)
+            return v2.FromBaseUnit(baseValue);
+        else if (toUnit is TemperatureUnit t2)
+            return t2.ConvertFromBaseUnit(baseValue);
+        else
+            throw new ArgumentException("Unsupported unit type");
     }
 
     public Quantity<U> Add(Quantity<U> other, U targetUnit)

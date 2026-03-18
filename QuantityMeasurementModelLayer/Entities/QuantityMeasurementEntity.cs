@@ -4,16 +4,16 @@ namespace QuantityMeasurementModelLayer.Entities;
         public int Id { get; set; }
 
         public double FirstValue { get; set; }
-        public string FirstUnit { get; set; }
+        public string FirstUnit { get; set; } = string.Empty;
 
         public double SecondValue { get; set; }
-        public string SecondUnit { get; set; }
+        public string SecondUnit { get; set; } = string.Empty;
 
-        public string Operation { get; set; }
+        public string Operation { get; set; } = string.Empty;
 
         public double Result { get; set; }
 
-        public string MeasurementType { get; set; }
+        public string MeasurementType { get; set; } = string.Empty;
 
         public QuantityMeasurementEntity() { }
 
@@ -27,11 +27,11 @@ namespace QuantityMeasurementModelLayer.Entities;
             string measurementType)
         {
             FirstValue = firstValue;
-            FirstUnit = firstUnit;
+            FirstUnit = firstUnit ?? string.Empty;
             SecondValue = secondValue;
-            SecondUnit = secondUnit;
-            Operation = operation;
+            SecondUnit = secondUnit ?? string.Empty;
+            Operation = operation ?? string.Empty;
             Result = result;
-            MeasurementType = measurementType;
+            MeasurementType = measurementType ?? string.Empty;
         }
     }

@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using QuantityMeasurementApp.Model;
 using QuantityMeasurementModelLayer.Exceptions;
 using QuantityMeasurementModelLayer.Enums;
+using QuantityMeasurementModelLayer.Models;
 using QuantityMeasurementRepositoryLayer.Repositories;
 using QuantityMeasurementRepositoryLayer.Interfaces;
 using QuantityMeasurementModelLayer.DTO;
@@ -632,7 +633,7 @@ public void GivenTwoTemperatures_WhenAdded_ShouldThrowException()
     var t1 = new Quantity<TemperatureUnit>(30, TemperatureUnit.CELSIUS);
     var t2 = new Quantity<TemperatureUnit>(20, TemperatureUnit.CELSIUS);
 
-    Assert.Throws<UnsupportedOperationException>(() =>
+    Assert.ThrowsException<UnsupportedOperationException>(() =>
     {
         t1.Add(t2, TemperatureUnit.CELSIUS);
     });

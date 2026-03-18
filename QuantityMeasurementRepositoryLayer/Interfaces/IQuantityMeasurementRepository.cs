@@ -32,4 +32,16 @@ public interface IQuantityMeasurementRepository
 
     // Delete all measurements
     void DeleteAll();
+
+    // Check if specific operation exists
+    bool OperationExists(double firstValue, string firstUnit, double secondValue, string secondUnit, string operation);
+
+    // Get the last saved operation
+    QuantityMeasurementEntity GetLastSavedOperation();
+
+    // Test database connectivity
+    bool TestConnection();
+
+    // Reset IDENTITY to proper value
+    void ResetIdentity();
 }
