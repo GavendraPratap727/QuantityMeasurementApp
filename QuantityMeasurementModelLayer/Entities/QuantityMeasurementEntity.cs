@@ -1,37 +1,36 @@
-namespace QuantityMeasurementModelLayer.Entities;
+ 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+ 
+namespace QuantityMeasurementModelLayer.Entities
+{
+    [Table("QuantityMeasurements")]   // maps this class to the QuantityMeasurements table
     public class QuantityMeasurementEntity
     {
+        [Key]                                                    // primary key
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]    // auto-increment
         public int Id { get; set; }
-
-        public double FirstValue { get; set; }
-        public string FirstUnit { get; set; } = string.Empty;
-
-        public double SecondValue { get; set; }
-        public string SecondUnit { get; set; } = string.Empty;
-
-        public string Operation { get; set; } = string.Empty;
-
-        public double Result { get; set; }
-
-        public string MeasurementType { get; set; } = string.Empty;
-
+ 
+        [Required]
+        [MaxLength(20)]
+        public string Operation { get; set; }
+ 
+        public double Operand1 { get; set; }
+        public double Operand2 { get; set; }
+ 
+        [Required]
+        [MaxLength(50)]
+        public string Result { get; set; }
+ 
+        // Required for Redis JSON deserialization
         public QuantityMeasurementEntity() { }
-
-        public QuantityMeasurementEntity(
-            double firstValue,
-            string firstUnit,
-            double secondValue,
-            string secondUnit,
-            string operation,
-            double result,
-            string measurementType)
+ 
+        public QuantityMeasurementEntity(string operation, double op1, double op2, string result)
         {
-            FirstValue = firstValue;
-            FirstUnit = firstUnit ?? string.Empty;
-            SecondValue = secondValue;
-            SecondUnit = secondUnit ?? string.Empty;
-            Operation = operation ?? string.Empty;
-            Result = result;
-            MeasurementType = measurementType ?? string.Empty;
+            Operation = operation;
+            Operand1  = op1;
+            Operand2  = op2;
+            Result    = result;
         }
     }
+}
