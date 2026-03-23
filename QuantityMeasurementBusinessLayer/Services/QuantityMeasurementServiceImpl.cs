@@ -4,22 +4,18 @@ using QuantityMeasurementModelLayer.DTO;
 using QuantityMeasurementRepositoryLayer.Interfaces;
 using QuantityMeasurementModelLayer.Entities;
 using QuantityMeasurementModelLayer.Enums;
- 
+
 namespace QuantityMeasurementBusinessLayer.Services;
- 
+
 public class QuantityMeasurementServiceImpl : IQuantityMeasurementService
 {
-    private readonly IQuantityMeasurementRepository cacheRepository;
-    private readonly IQuantityMeasurementRepositorySql sqlRepository;
- 
-    public QuantityMeasurementServiceImpl(
-        IQuantityMeasurementRepository cacheRepo,
-        IQuantityMeasurementRepositorySql sqlRepo)
+    private readonly IQuantityMeasurementRepositorySql repository;
+
+    public QuantityMeasurementServiceImpl(IQuantityMeasurementRepositorySql repo)
     {
-        cacheRepository = cacheRepo;
-        sqlRepository   = sqlRepo;
+        repository = repo;
     }
- 
+
     private double ConvertToBase(double value, string unit)
     {
         if (Enum.TryParse(unit, out LengthUnit length))   return value * length.GetConversionFactor();
@@ -38,9 +34,8 @@ public class QuantityMeasurementServiceImpl : IQuantityMeasurementService
         double v1 = ConvertToBase(q1.Value, q1.Unit);
         double v2 = ConvertToBase(q2.Value, q2.Unit);
         bool result = v1 == v2;
-        var entity = new QuantityMeasurementEntity("COMPARE", q1.Value, q2.Value, result.ToString());
-        cacheRepository.Save(entity);
-        sqlRepository.Save(entity);
+        var entity = new QuantityMeasurementEntity("COMPARE", q1.Value, q2.Value, result.ToString(), q1.Unit, q2.Unit);
+        repository.Save(entity);
         return result;
     }
  
@@ -49,9 +44,8 @@ public class QuantityMeasurementServiceImpl : IQuantityMeasurementService
         double v1 = ConvertToBase(q1.Value, q1.Unit);
         double v2 = ConvertToBase(q2.Value, q2.Unit);
         double value = v1 + v2;
-        var entity = new QuantityMeasurementEntity("ADD", q1.Value, q2.Value, value.ToString());
-        cacheRepository.Save(entity);
-        sqlRepository.Save(entity);
+        var entity = new QuantityMeasurementEntity("ADD", q1.Value, q2.Value, value.ToString(), q1.Unit, q2.Unit);
+        repository.Save(entity);
         return new QuantityDTO(value, q1.Unit);
     }
  
@@ -60,9 +54,8 @@ public class QuantityMeasurementServiceImpl : IQuantityMeasurementService
         double v1 = ConvertToBase(q1.Value, q1.Unit);
         double v2 = ConvertToBase(q2.Value, q2.Unit);
         double value = v1 - v2;
-        var entity = new QuantityMeasurementEntity("SUBTRACT", q1.Value, q2.Value, value.ToString());
-        cacheRepository.Save(entity);
-        sqlRepository.Save(entity);
+        var entity = new QuantityMeasurementEntity("SUBTRACT", q1.Value, q2.Value, value.ToString(), q1.Unit, q2.Unit);
+        repository.Save(entity);
         return new QuantityDTO(value, q1.Unit);
     }
  
@@ -71,37 +64,37 @@ public class QuantityMeasurementServiceImpl : IQuantityMeasurementService
         double v1 = ConvertToBase(q1.Value, q1.Unit);
         double v2 = ConvertToBase(q2.Value, q2.Unit);
         double result = v1 / v2;
-        var entity = new QuantityMeasurementEntity("DIVIDE", q1.Value, q2.Value, result.ToString());
-        cacheRepository.Save(entity);
-        sqlRepository.Save(entity);
+        var entity = new QuantityMeasurementEntity("DIVIDE", q1.Value, q2.Value, result.ToString(), q1.Unit, q2.Unit);
+        repository.Save(entity);
         return result;
     }
  
     public QuantityDTO Convert(QuantityDTO input, string targetUnit)
     {
         double baseValue = ConvertToBase(input.Value, input.Unit);
-        void SaveBoth() {
-            var e = new QuantityMeasurementEntity("CONVERSION", input.Value, 0, targetUnit);
-            cacheRepository.Save(e);
-            sqlRepository.Save(e);
-        }
+        var entity = new QuantityMeasurementEntity("CONVERSION", input.Value, 0, targetUnit);
+        repository.Save(entity);
+        
         if (Enum.TryParse(targetUnit, out LengthUnit length))
-        { SaveBoth(); return new QuantityDTO(baseValue / length.GetConversionFactor(), targetUnit); }
+            return new QuantityDTO(baseValue / length.GetConversionFactor(), targetUnit);
         if (Enum.TryParse(targetUnit, out WeightUnit weight))
-        { SaveBoth(); return new QuantityDTO(baseValue / weight.GetConversionFactor(), targetUnit); }
+            return new QuantityDTO(baseValue / weight.GetConversionFactor(), targetUnit);
         if (Enum.TryParse(targetUnit, out VolumeUnit volume))
-        { SaveBoth(); return new QuantityDTO(baseValue / volume.ToBaseUnit(), targetUnit); }
+            return new QuantityDTO(baseValue / volume.ToBaseUnit(), targetUnit);
         if (Enum.TryParse(targetUnit, out TemperatureUnit temp))
         {
-            SaveBoth();
             if (temp == TemperatureUnit.CELSIUS)    return new QuantityDTO(baseValue, targetUnit);
             if (temp == TemperatureUnit.FAHRENHEIT) return new QuantityDTO(baseValue * 9 / 5 + 32, targetUnit);
         }
         throw new ArgumentException("Unsupported target unit");
     }
  
-    public List<QuantityMeasurementEntity> GetCacheHistory()  => cacheRepository.GetAll();
-    public List<QuantityMeasurementEntity> GetRedisHistory()  => cacheRepository.GetAll();
-    public List<QuantityMeasurementEntity> GetSqlHistory()    => sqlRepository.GetAll();
-    public List<QuantityMeasurementEntity> GetEFHistory()     => sqlRepository.GetAll(); 
+    public List<QuantityMeasurementEntity> GetAll()
+    {
+        return repository.GetAll();
+    }
+    public List<QuantityMeasurementEntity> GetCacheHistory() => repository.GetAll();
+    public List<QuantityMeasurementEntity> GetRedisHistory() => repository.GetAll();
+    public List<QuantityMeasurementEntity> GetSqlHistory() => repository.GetAll();
+    public List<QuantityMeasurementEntity> GetEFHistory() => repository.GetAll(); 
 }

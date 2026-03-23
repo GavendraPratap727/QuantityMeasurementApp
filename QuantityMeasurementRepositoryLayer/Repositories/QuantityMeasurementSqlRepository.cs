@@ -19,11 +19,14 @@ public class QuantityMeasurementSqlRepository : IQuantityMeasurementRepositorySq
         using (var connection = new SqlConnection(_connectionString))
         {
             connection.Open();
-            var command = new SqlCommand("INSERT INTO QuantityMeasurements (Operation, Operand1, Operand2, Result) VALUES (@Operation, @Operand1, @Operand2, @Result)", connection);
-            command.Parameters.AddWithValue("@Operation", entity.Operation);
-            command.Parameters.AddWithValue("@Operand1", entity.Operand1);
-            command.Parameters.AddWithValue("@Operand2", entity.Operand2);
-            command.Parameters.AddWithValue("@Result", entity.Result);
+            var command = new SqlCommand("INSERT INTO [QuantityMeasurements] ([FirstUnit], [FirstValue], [Operation], [Result], [SecondUnit], [SecondValue], [MeasurementType]) VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6)", connection);
+            command.Parameters.AddWithValue("@p0", entity.FirstUnit);
+            command.Parameters.AddWithValue("@p1", entity.FirstValue);
+            command.Parameters.AddWithValue("@p2", entity.Operation);
+            command.Parameters.AddWithValue("@p3", entity.Result);
+            command.Parameters.AddWithValue("@p4", entity.SecondUnit);
+            command.Parameters.AddWithValue("@p5", entity.SecondValue);
+            command.Parameters.AddWithValue("@p6", entity.MeasurementType);
             command.ExecuteNonQuery();
         }
     }

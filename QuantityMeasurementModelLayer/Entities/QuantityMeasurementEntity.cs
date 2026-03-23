@@ -15,8 +15,13 @@ namespace QuantityMeasurementModelLayer.Entities
         [MaxLength(20)]
         public string Operation { get; set; }
  
-        public double Operand1 { get; set; }
-        public double Operand2 { get; set; }
+        public double FirstValue { get; set; }
+        public double SecondValue { get; set; }
+        
+        public string FirstUnit { get; set; }
+        public string SecondUnit { get; set; }
+        
+        public string MeasurementType { get; set; }
  
         [Required]
         [MaxLength(50)]
@@ -25,12 +30,15 @@ namespace QuantityMeasurementModelLayer.Entities
         // Required for Redis JSON deserialization
         public QuantityMeasurementEntity() { }
  
-        public QuantityMeasurementEntity(string operation, double op1, double op2, string result)
+        public QuantityMeasurementEntity(string operation, double firstValue, double secondValue, string result, string firstUnit = null, string secondUnit = null)
         {
             Operation = operation;
-            Operand1  = op1;
-            Operand2  = op2;
+            FirstValue  = firstValue;
+            SecondValue  = secondValue;
             Result    = result;
+            FirstUnit  = firstUnit;
+            SecondUnit  = secondUnit;
+            MeasurementType = operation;
         }
     }
 }

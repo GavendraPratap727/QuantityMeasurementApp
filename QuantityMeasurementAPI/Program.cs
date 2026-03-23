@@ -14,13 +14,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
  
-// Redis 
-builder.Services.AddStackExchangeRedisCache(options =>
-{
-    options.Configuration = builder.Configuration["Redis:ConnectionString"];
-    options.InstanceName  = "QMA_";
-});
- 
 // Entity Framework Core — DbContext registered with SQL Server provider
 // Reads connection string from appsettings.json
 builder.Services.AddDbContext<QuantityMeasurementDbContext>(options =>
@@ -29,7 +22,6 @@ builder.Services.AddDbContext<QuantityMeasurementDbContext>(options =>
 // Repository Layer
 // IQuantityMeasurementRepository
 // IQuantityMeasurementRepositorySql 
-builder.Services.AddScoped<IQuantityMeasurementRepository,    QuantityMeasurementRedisRepository>();
 builder.Services.AddScoped<IQuantityMeasurementRepositorySql, QuantityMeasurementEFRepository>();
  
 // Business Layer

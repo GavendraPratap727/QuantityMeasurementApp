@@ -27,13 +27,16 @@ public class QuantityMeasurementDbContext : DbContext
             entity.Property(e => e.Operation)
                   .IsRequired()
                   .HasMaxLength(20);
- 
+
             entity.Property(e => e.Result)
                   .IsRequired()
                   .HasMaxLength(50);
- 
-            entity.Property(e => e.Operand1).IsRequired();
-            entity.Property(e => e.Operand2).IsRequired();
+
+            entity.Property(e => e.FirstValue).IsRequired();
+            entity.Property(e => e.SecondValue).IsRequired();
+            entity.Property(e => e.FirstUnit).IsRequired();
+            entity.Property(e => e.SecondUnit).IsRequired();
+            entity.Property(e => e.MeasurementType).IsRequired();
         });
     }
 }

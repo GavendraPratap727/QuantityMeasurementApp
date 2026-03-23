@@ -11,7 +11,7 @@ public interface IQuantityMeasurementService
     QuantityDTO Add(QuantityDTO q1, QuantityDTO q2);
     QuantityDTO Subtract(QuantityDTO q1, QuantityDTO q2);
     double Divide(QuantityDTO q1, QuantityDTO q2);
- 
+    List<QuantityMeasurementEntity> GetAll();
     List<QuantityMeasurementEntity> GetCacheHistory();
     List<QuantityMeasurementEntity> GetRedisHistory();
     List<QuantityMeasurementEntity> GetSqlHistory();

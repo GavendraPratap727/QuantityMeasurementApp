@@ -92,18 +92,37 @@ public class QuantityMeasurementController : ControllerBase
         catch (Exception ex) { return StatusCode(500, ex.Message); }
     }
 
+    [HttpGet("getall")]
+    public IActionResult GetAll()
+    {
+        try
+        {
+            _logger.LogInformation("GetAll called");
+            var result = _service.GetAll();
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error in GetAll");
+            return StatusCode(500, ex.Message);
+        }
+    }
+
     [HttpGet("history/redis")]
     public IActionResult GetRedisHistory()
     {
         try
         {
             _logger.LogInformation("GetRedisHistory called");
-            var history = _service.GetRedisHistory();
-            return Ok(history);
+            var result = _service.GetRedisHistory();
+            return Ok(result);
         }
-        catch (Exception ex) { return StatusCode(500, ex.Message); }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error in GetRedisHistory");
+            return StatusCode(500, ex.Message);
+        }
     }
-
 
     [HttpGet("history/sql")]
     public IActionResult GetSqlHistory()

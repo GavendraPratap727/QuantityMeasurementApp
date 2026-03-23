@@ -20,8 +20,16 @@ public class QuantityMeasurementEFRepository : IQuantityMeasurementRepositorySql
     // VALUES (@Operation, @Operand1, @Operand2, @Result)
     public void Save(QuantityMeasurementEntity entity)
     {
-        _context.Measurements.Add(entity);  
-        _context.SaveChanges();              
+        try
+        {
+            _context.Measurements.Add(entity);  
+            _context.SaveChanges();              
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database save error: {ex.Message}");
+            throw;
+        }
     }
  
     // GetAll
