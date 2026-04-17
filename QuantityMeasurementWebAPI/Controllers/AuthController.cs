@@ -55,6 +55,8 @@ public class AuthController : ControllerBase
         catch (Exception ex)
         {
             Console.WriteLine($"Signup error: {ex.Message}");
+            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            Console.WriteLine($"Inner exception: {ex.InnerException?.Message}");
             return StatusCode(500, new { error = $"Internal server error: {ex.Message}" });
         }
     }
