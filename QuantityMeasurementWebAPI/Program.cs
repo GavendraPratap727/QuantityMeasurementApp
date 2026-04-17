@@ -140,6 +140,17 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<QuantityMeasurementDbContext>();
+    
+    // Clear any existing SQL Server migrations from history
+    try
+    {
+        context.Database.ExecuteSqlRaw("DELETE FROM \"__EFMigrationsHistory\" WHERE \"MigrationId\" LIKE '20260331094451_%'");
+    }
+    catch
+    {
+        // Table might not exist yet, which is fine
+    }
+    
     context.Database.Migrate();
 }
 
