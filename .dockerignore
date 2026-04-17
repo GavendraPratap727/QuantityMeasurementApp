@@ -109,7 +109,6 @@ MigrationBackup/
 .gitignore
 
 # Docker
-Dockerfile*
 docker-compose*
 .dockerignore
 
