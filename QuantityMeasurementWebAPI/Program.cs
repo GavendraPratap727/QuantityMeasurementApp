@@ -136,6 +136,13 @@ builder.Services.AddScoped<IQuantityMeasurementService, QuantityMeasurementServi
 // ---------------------- Build App ----------------------
 var app = builder.Build();
 
+// Apply database migrations automatically
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<QuantityMeasurementDbContext>();
+    context.Database.Migrate();
+}
+
 // Middleware
 app.UseSwagger();
 app.UseSwaggerUI(c =>
