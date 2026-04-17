@@ -1,5 +1,7 @@
 using BCrypt.Net;
 
+namespace QuantityMeasurementBusinessLayer.Services;
+
 public static class PasswordHelper
 {
     public static string HashPassword(string password)
