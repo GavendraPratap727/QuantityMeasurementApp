@@ -11,6 +11,7 @@ using QuantityMeasurementRepositoryLayer.Repository;
 using QuantityMeasurementWebAPI.Middleware;
 using QuantityMeasurementWebAPI.Services;
 using System.Security.Claims;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -111,7 +112,7 @@ builder.Services.AddSwaggerGen(c =>
 
 // ---------------------- Database ----------------------
 builder.Services.AddDbContext<QuantityMeasurementDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
 // ---------------------- Dependency Injection ----------------------

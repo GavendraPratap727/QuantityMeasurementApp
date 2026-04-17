@@ -181,3 +181,6 @@ D:\QuantityMeasurementApp\QuantityMeasurementWebAPI\obj\Debug\net9.0\refint\Quan
 D:\QuantityMeasurementApp\QuantityMeasurementWebAPI\obj\Debug\net9.0\QuantityMeasurementWebAPI.pdb
 D:\QuantityMeasurementApp\QuantityMeasurementWebAPI\obj\Debug\net9.0\QuantityMeasurementWebAPI.genruntimeconfig.cache
 D:\QuantityMeasurementApp\QuantityMeasurementWebAPI\obj\Debug\net9.0\ref\QuantityMeasurementWebAPI.dll
+D:\QuantityMeasurementApp\QuantityMeasurementWebAPI\bin\Debug\net9.0\appsettings.Production.json
+D:\QuantityMeasurementApp\QuantityMeasurementWebAPI\bin\Debug\net9.0\Npgsql.dll
+D:\QuantityMeasurementApp\QuantityMeasurementWebAPI\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

@@ -1,0 +1,36 @@
+services:
+  # Web API Service
+  - type: web
+    name: quantity-measurement-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    region: oregon
+    healthCheck:
+      path: /health
+      initialDelaySeconds: 60
+      periodSeconds: 15
+      timeoutSeconds: 5
+      failureThreshold: 3
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://+:8080
+      - key: JWT_KEY
+        generateValue: true
+      - key: JWT_ISSUER
+        value: QuantityMeasurementApp
+      - key: JWT_AUDIENCE
+        value: QuantityMeasurementAppUsers
+    autoDeploy: true
+
+  # PostgreSQL Database
+  - type: postgres
+    name: quantity-measurement-db
+    plan: free
+    region: oregon
+    databaseName: quantitymeasurementdb
+    user: postgres
+    autoDeploy: true
