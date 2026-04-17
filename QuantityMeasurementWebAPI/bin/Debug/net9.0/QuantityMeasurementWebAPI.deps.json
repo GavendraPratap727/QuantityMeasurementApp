@@ -12,7 +12,7 @@
           "Microsoft.EntityFrameworkCore": "9.0.5",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.5",
           "Microsoft.Extensions.Caching.StackExchangeRedis": "9.0.0",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.8",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.2",
           "QuantityMeasurementBusinessLayer": "1.0.0",
           "QuantityMeasurementRepositoryLayer": "1.0.0",
           "StackExchange.Redis": "2.12.1",
@@ -836,28 +836,27 @@
           }
         }
       },
-      "Npgsql/8.0.4": {
+      "Npgsql/9.0.2": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "9.0.5"
         },
         "runtime": {
           "lib/net8.0/Npgsql.dll": {
-            "assemblyVersion": "8.0.4.0",
-            "fileVersion": "8.0.4.0"
+            "assemblyVersion": "9.0.2.0",
+            "fileVersion": "9.0.2.0"
           }
         }
       },
-      "Npgsql.EntityFrameworkCore.PostgreSQL/8.0.8": {
+      "Npgsql.EntityFrameworkCore.PostgreSQL/9.0.2": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "9.0.5",
-          "Microsoft.EntityFrameworkCore.Abstractions": "9.0.5",
           "Microsoft.EntityFrameworkCore.Relational": "9.0.5",
-          "Npgsql": "8.0.4"
+          "Npgsql": "9.0.2"
         },
         "runtime": {
           "lib/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
-            "assemblyVersion": "8.0.8.0",
-            "fileVersion": "8.0.8.0"
+            "assemblyVersion": "9.0.2.0",
+            "fileVersion": "9.0.2.0"
           }
         }
       },
@@ -1530,19 +1529,19 @@
       "path": "mono.texttemplating/3.0.0",
       "hashPath": "mono.texttemplating.3.0.0.nupkg.sha512"
     },
-    "Npgsql/8.0.4": {
+    "Npgsql/9.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-vaYEUlF/pB9m8bs21wQv3Da0kMHT4A9USe47VfY/L2BO97xz5KfIxhEu22QS9d68ZrLxvtL3wQDfDLPr2OjbjA==",
-      "path": "npgsql/8.0.4",
-      "hashPath": "npgsql.8.0.4.nupkg.sha512"
+      "sha512": "sha512-hCbO8box7i/XXiTFqCJ3GoowyLqx3JXxyrbOJ6om7dr+eAknvBNhhUHeJVGAQo44sySZTfdVffp4BrtPeLZOAA==",
+      "path": "npgsql/9.0.2",
+      "hashPath": "npgsql.9.0.2.nupkg.sha512"
     },
-    "Npgsql.EntityFrameworkCore.PostgreSQL/8.0.8": {
+    "Npgsql.EntityFrameworkCore.PostgreSQL/9.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-D5WWJZJTgZYUmGv66BARXbTlinp2a5f5RueJqGYoHuWJw02J0i2va/RA+8N4A5hLORK5YKMRqXhFWtKsZdrksw==",
-      "path": "npgsql.entityframeworkcore.postgresql/8.0.8",
-      "hashPath": "npgsql.entityframeworkcore.postgresql.8.0.8.nupkg.sha512"
+      "sha512": "sha512-cYdOGplIvr9KgsG8nJ8xnzBTImeircbgetlzS1OmepS5dAQW6PuGpVrLOKBNEwEvGYZPsV8037X5vZ/Dmpwz7Q==",
+      "path": "npgsql.entityframeworkcore.postgresql/9.0.2",
+      "hashPath": "npgsql.entityframeworkcore.postgresql.9.0.2.nupkg.sha512"
     },
     "Pipelines.Sockets.Unofficial/2.2.8": {
       "type": "package",
