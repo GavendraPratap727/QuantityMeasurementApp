@@ -6,9 +6,9 @@ using QuantityMeasurementModelLayer.Exceptions;
 
 namespace QuantityMeasurementWebAPI.Controllers
 {
-    [Authorize(Roles ="admin,user")]
+    [Authorize(Roles ="User,admin,user")]
     [ApiController]
-    [Route("api/v1/quantities")]
+    [Route("api/quantitymeasurement")]
     public class QuantityMeasurementController : ControllerBase
     {
         private readonly IQuantityMeasurementService _service;
@@ -20,6 +20,7 @@ namespace QuantityMeasurementWebAPI.Controllers
 
         // Compare two quantities
        
+        [AllowAnonymous]
         [HttpPost("compare")]
         public IActionResult Compare([FromBody] CompareRequestDTO request)
         {
@@ -32,9 +33,19 @@ namespace QuantityMeasurementWebAPI.Controllers
             {
                 return BadRequest(new { error = ex.Message });
             }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { error = "Invalid unit or measurement type", message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Compare operation error: {ex.Message}");
+                return StatusCode(500, new { error = "Internal server error occurred during compare operation", message = ex.Message });
+            }
         }
 
         // Add two quantities
+        [AllowAnonymous]
         [HttpPost("add")]
         public IActionResult Add([FromBody] OperationRequestDTO request)
         {
@@ -47,9 +58,19 @@ namespace QuantityMeasurementWebAPI.Controllers
             {
                 return BadRequest(new { error = ex.Message });
             }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { error = "Invalid unit or measurement type", message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Add operation error: {ex.Message}");
+                return StatusCode(500, new { error = "Internal server error occurred during add operation", message = ex.Message });
+            }
         }
 
         // Subtract two quantities
+        [AllowAnonymous]
         [HttpPost("subtract")]
         public IActionResult Subtract([FromBody] OperationRequestDTO request)
         {
@@ -62,9 +83,19 @@ namespace QuantityMeasurementWebAPI.Controllers
             {
                 return BadRequest(new { error = ex.Message });
             }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { error = "Invalid unit or measurement type", message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Subtract operation error: {ex.Message}");
+                return StatusCode(500, new { error = "Internal server error occurred during subtract operation", message = ex.Message });
+            }
         }
 
         // Divide two quantities
+        [AllowAnonymous]
         [HttpPost("divide")]
         public IActionResult Divide([FromBody] OperationRequestDTO request)
         {
@@ -81,25 +112,62 @@ namespace QuantityMeasurementWebAPI.Controllers
             {
                 return BadRequest(new { error = ex.Message });
             }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { error = "Invalid unit or measurement type", message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Divide operation error: {ex.Message}");
+                return StatusCode(500, new { error = "Internal server error occurred during divide operation", message = ex.Message });
+            }
         }
 
         // Convert a quantity to target unit
+        [AllowAnonymous]
         [HttpPost("convert")]
         public IActionResult Convert([FromBody] ConvertRequestDTO request)
         {
             try
             {
+                Console.WriteLine($"Convert request: {request?.QuantityDTO?.Value} {request?.QuantityDTO?.Unit} to {request?.TargetUnit}");
+                
+                if (request == null || request.QuantityDTO == null)
+                {
+                    Console.WriteLine("Convert request is null or missing QuantityDTO");
+                    return BadRequest("Request data is missing");
+                }
+                
                 var result = _service.ConvertQuantity(request.QuantityDTO, request.TargetUnit);
+                Console.WriteLine($"Convert result: {result}");
                 return Ok(result);
             }
             catch (UnsupportedOperationException ex)
             {
+                Console.WriteLine($"Convert error: {ex.Message}");
                 return BadRequest(new { error = ex.Message });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { error = "Invalid unit or measurement type", message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Convert operation error: {ex.Message}");
+                return StatusCode(500, new { error = "Internal server error occurred during convert operation", message = ex.Message });
             }
         }
 
         // Get all operations with data source info
        
+        [HttpGet("history")]
+        public IActionResult GetHistory()
+        {
+            var dataWithSource = _service.GetAllOperationsWithSource(); // Returns (List<QuantityMeasurementEntity>, string source)
+            
+            return Ok(dataWithSource.data);
+        }
+
         [HttpGet("history/all")]
         public IActionResult GetAllOperations()
         {

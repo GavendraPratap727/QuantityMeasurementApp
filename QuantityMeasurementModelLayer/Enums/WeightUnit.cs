@@ -5,5 +5,7 @@ namespace QuantityMeasurementModelLayer.Enums;
     {
         KILOGRAM,
         GRAM,
-        POUND
+        POUND,
+        MILLIGRAM,
+        OUNCE
     }

@@ -5,7 +5,7 @@ namespace QuantityMeasurementBusinessLayer.Services;
 
 public class QuantityService
 {
-    private const double EPSILON = 0.00001;
+    private const double EPSILON = 0.0000001;
 
     private double ConvertToBaseUnit<U>(QuantityModel<U> quantity)
         where U : struct, Enum
@@ -55,6 +55,13 @@ public class QuantityService
         double base1 = ConvertToBaseUnit(q1);
         double base2 = ConvertToBaseUnit(q2);
 
+        // For temperature, use more precise comparison due to floating-point issues
+        if (typeof(U) == typeof(TemperatureUnit))
+        {
+            return Math.Abs(base1 - base2) < 0.0000001;
+        }
+
+        // For other measurement types, use standard EPSILON
         return Math.Abs(base1 - base2) < EPSILON;
     }
 

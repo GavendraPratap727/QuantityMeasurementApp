@@ -2,8 +2,11 @@ namespace QuantityMeasurementModelLayer.Enums;
     public enum VolumeUnit
     {
         LITRE,
+        LITER,
         MILLILITRE,
-        GALLON
+        MILLILITER,
+        GALLON,
+        CUP,
+        TEASPOON,
+        TABLESPOON
     }
-
-    

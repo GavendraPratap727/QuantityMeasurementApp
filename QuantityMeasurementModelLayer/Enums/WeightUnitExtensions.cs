@@ -9,7 +9,9 @@ namespace QuantityMeasurementModelLayer.Enums;
                 case WeightUnit.KILOGRAM: return 1.0;
                 case WeightUnit.GRAM: return 0.001;
                 case WeightUnit.POUND: return 0.45359237;
-                default: throw new ArgumentException();
+                case WeightUnit.MILLIGRAM: return 0.000001;
+                case WeightUnit.OUNCE: return 0.0283495;
+                default: throw new ArgumentException($"Unsupported weight unit: {unit}");
             }
         }
 

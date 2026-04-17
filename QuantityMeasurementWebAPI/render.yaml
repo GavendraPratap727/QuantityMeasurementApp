@@ -1,0 +1,34 @@
+services:
+  # Web API Service
+  - type: web
+    name: quantity-measurement-api
+    env: docker
+    region: oregon
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /swagger/index.html
+    envVars:
+      # Database configuration (will be set in Render dashboard)
+      - key: ConnectionStrings__DefaultConnection
+        value: ${DATABASE_URL}
+        sync: false
+      # JWT Configuration
+      - key: Jwt__Key
+        value: ${JWT_KEY}
+        sync: false
+      - key: Jwt__Issuer
+        value: ${JWT_ISSUER}
+        sync: false
+      - key: Jwt__Audience
+        value: ${JWT_AUDIENCE}
+        sync: false
+      - key: Jwt__ExpiresInMinutes
+        value: "60"
+        sync: false
+      # ASP.NET Core configuration
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+        sync: false
+      - key: ASPNETCORE_URLS
+        value: http://+:8080
+        sync: false

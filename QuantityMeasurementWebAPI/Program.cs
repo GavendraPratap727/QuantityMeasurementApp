@@ -16,6 +16,42 @@ var builder = WebApplication.CreateBuilder(args);
 
 // ---------------------- Add Services ----------------------
 
+// CORS - Allow frontend to access API
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        if (builder.Environment.IsDevelopment())
+        {
+            policy.WithOrigins(
+                "http://localhost:5500",
+                "http://127.0.0.1:5500",
+                "http://localhost:3000",
+                "http://127.0.0.1:3000",
+                "http://localhost:8080",
+                "http://127.0.0.1:8080",
+                "http://localhost:8000",
+                "http://127.0.0.1:8000",
+                "http://localhost:5000",
+                "http://127.0.0.1:5000",
+                "http://localhost:6000",
+                "http://127.0.0.1:6000",
+                "http://localhost:4200",
+                "http://127.0.0.1:4200"
+            );
+        }
+        else
+        {
+            // In production, allow any origin for easier deployment
+            // You can restrict this to specific domains later
+            policy.AllowAnyOrigin();
+        }
+        policy.AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials();
+    });
+});
+
 // Controllers
 builder.Services.AddControllers();
 
@@ -82,12 +118,10 @@ builder.Services.AddDbContext<QuantityMeasurementDbContext>(options =>
 // Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<QuantityMeasurementEFRepository>();
-// builder.Services.AddScoped<QuantityMeasurementCacheRepository>();
 
 // Services
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<IQuantityMeasurementService, QuantityMeasurementServiceImpl>();
-// builder.Services.AddHostedService<RedisSyncBackgroundService>();
 
 // Redis cache - Commented out to run without Redis
 // builder.Services.AddStackExchangeRedisCache(options =>
@@ -111,6 +145,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseMiddleware<GlobalExceptionMiddleware>();
 app.UseHttpsRedirection();
+
+// Enable CORS
+app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();

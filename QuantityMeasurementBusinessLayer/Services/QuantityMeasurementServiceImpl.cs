@@ -40,7 +40,7 @@ namespace QuantityMeasurementBusinessLayer.Services
     catch (Exception ex)
     {
         Console.WriteLine($"DB FAILED - ADDING TO QUEUE: {ex.Message}");
-        _cacheRepository.AddToQueue(entity);
+        _cacheRepository?.AddToQueue(entity);
     }
 }
 
@@ -49,6 +49,12 @@ namespace QuantityMeasurementBusinessLayer.Services
        
 public void SyncQueueToDatabase()
 {
+    if (_cacheRepository == null)
+    {
+        Console.WriteLine("CACHE REPOSITORY NULL - SYNC NOT AVAILABLE");
+        return;
+    }
+
     var queuedEntities = _cacheRepository.GetQueue();
 
     if (queuedEntities.Count == 0)
@@ -111,7 +117,9 @@ public void SyncQueueToDatabase()
                     var t2 = Enum.Parse<TemperatureUnit>(thatQuantity.Unit, true);
                     double base1 = t1.ConvertToBaseUnit(thisQuantity.Value);
                     double base2 = t2.ConvertToBaseUnit(thatQuantity.Value);
-                    result = Math.Abs(base1 - base2) < 0.0001;
+                    Console.WriteLine($"DEBUG: Comparing {thisQuantity.Value}{thisQuantity.Unit} vs {thatQuantity.Value}{thatQuantity.Unit}");
+                    Console.WriteLine($"DEBUG: Base1 = {base1}, Base2 = {base2}, Diff = {Math.Abs(base1 - base2)}");
+                    result = Math.Abs(base1 - base2) < 0.0000001;
                     break;
 
                 default:
@@ -162,7 +170,7 @@ public void SyncQueueToDatabase()
                     break;
 
                 case "TEMPERATURE":
-                    throw new UnsupportedOperationException("Addition not supported for Temperature");
+                    throw new UnsupportedOperationException("Temperature addition is not meaningful. You cannot add temperatures because they have different zero points (0°C ≠ 0°F ≠ 0K). Use temperature comparison or conversion instead.");
 
                 default:
                     throw new Exception("Unsupported measurement type");
@@ -213,7 +221,7 @@ public void SyncQueueToDatabase()
                     break;
 
                 case "TEMPERATURE":
-                    throw new UnsupportedOperationException("Subtraction not supported for Temperature");
+                    throw new UnsupportedOperationException("Temperature subtraction is not meaningful. You cannot subtract temperatures because they have different zero points (0°C ≠ 0°F ≠ 0K). Use temperature comparison or conversion instead.");
 
                 default:
                     throw new Exception("Unsupported measurement type");
@@ -261,7 +269,7 @@ public void SyncQueueToDatabase()
                     break;
 
                 case "TEMPERATURE":
-                    throw new UnsupportedOperationException("Division not supported for Temperature");
+                    throw new UnsupportedOperationException("Temperature division is not meaningful. You cannot divide temperatures because they have different zero points (0°C ≠ 0°F ≠ 0K). Use temperature comparison or conversion instead.");
 
                 default:
                     throw new Exception("Unsupported measurement type");
@@ -336,24 +344,24 @@ public void SyncQueueToDatabase()
         // ---------------------- Cache-aware reads ----------------------
         public List<QuantityMeasurementEntity> GetErroredOperations()
         {
-            var allData = _cacheRepository.GetCachedData() ?? _dbRepository.GetAll();
-            return allData.FindAll(e => e.Operation.Contains("ERROR"));
+            var allData = _cacheRepository?.GetCachedData() ?? _dbRepository.GetAll();
+            return allData?.FindAll(e => e.Operation.Contains("ERROR")) ?? new List<QuantityMeasurementEntity>();
         }
 
         public int GetOperationCount(string operationType)
         {
-            var allData = _cacheRepository.GetCachedData() ?? _dbRepository.GetAll();
-            return allData.FindAll(e => e.Operation == operationType).Count;
+            var allData = _cacheRepository?.GetCachedData() ?? _dbRepository.GetAll();
+            return allData?.FindAll(e => e.Operation == operationType).Count ?? 0;
         }
 
         public (List<QuantityMeasurementEntity> data, string source) GetAllOperationsWithSource()
         {
-            var cachedData = _cacheRepository.GetCachedData();
+            var cachedData = _cacheRepository?.GetCachedData();
             if (cachedData != null)
                 return (cachedData, "REDIS CACHE");
 
             var data = _dbRepository.GetAll();
-            _cacheRepository.SetCache(data);
+            _cacheRepository?.SetCache(data);
             return (data, "DATABASE");
         }
     }
