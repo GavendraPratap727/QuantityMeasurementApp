@@ -45,6 +45,8 @@ builder.Services.AddCors(options =>
         {
             // In production, allow specific frontend domains
             policy.WithOrigins(
+                "https://qmabygavendra.vercel.app",
+                "https://qmabygavendra.vercel.app/*",
                 "https://qmabygavendrapaaji.vercel.app",
                 "https://qmabygavendrapaaji.vercel.app/*"
             );
