@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace QuantityMeasurementWebAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
     public class HealthController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("/health")]
+        [HttpGet("/api/health")]
         public IActionResult Get()
         {
             return Ok(new
