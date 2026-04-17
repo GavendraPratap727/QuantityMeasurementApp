@@ -43,9 +43,11 @@ builder.Services.AddCors(options =>
         }
         else
         {
-            // In production, allow any origin for easier deployment
-            // You can restrict this to specific domains later
-            policy.AllowAnyOrigin();
+            // In production, allow specific frontend domains
+            policy.WithOrigins(
+                "https://qmabygavendrapaaji.vercel.app",
+                "https://qmabygavendrapaaji.vercel.app/*"
+            );
         }
         policy.AllowAnyHeader()
         .AllowAnyMethod()
